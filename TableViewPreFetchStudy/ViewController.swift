@@ -85,7 +85,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == dataList.count {
             let cell: UITableViewCell = UITableViewCell()
-            cell.textLabel?.text = "불러올 데이터 없음."
+            cell.textLabel?.text = "No More Data"
             cell.selectionStyle = .none
             return cell
         } else {
