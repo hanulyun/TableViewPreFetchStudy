@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     private var addDataCallCount: Int = 0
     private let finishCallCount: Int = 10
     
-    private var type: PagingType = .scrollOffset
+    private var type: PagingType = .willDisplay
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +110,12 @@ extension ViewController: UITableViewDelegate {
                     return
                 }
                 
-                self.addData()
+                // willDisplay 만으로는 cell이 screen에 보여졌다고 보장되지 않음.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    if tableView.visibleCells.contains(cell) {
+                        self.addData()
+                    }
+                }
             }
         }
     }
